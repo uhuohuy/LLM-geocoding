@@ -57,3 +57,14 @@ deepspeed --hostfile=$hostfile fine-tune.py  \
     --tf32 True \
     --use_lora True \
 ```
+### Falcon
+```shell
+Out='out/Place25'
+mkdir $Out
+python finetune/lora.py --checkpoint_dir checkpoints/tiiuae/falcon-7b \
+                        --data_dir data/7  \
+                        --out_dir $Out  \
+                        --device 1  \
+                        --precision bf16-true  \
+```
+
