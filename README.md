@@ -9,9 +9,9 @@ This is the code for fine-tuning Mistral, llama2, Baichuan2, and Falcon for geoc
 ## Data Preparation
 ## Fine-tuning
 ### Mistral and Llama2
- > OUT='PLACE'
-> mkdir $OUT
-> 
+```shell
+OUT='PLACE'
+mkdir $OUT
 python finetune_llama.py \
        --data_file "training_data7.json" \
        --optim 1 \
@@ -24,3 +24,4 @@ python finetune_llama.py \
        --LEARNING_RATE 3e-3 \
        --neftune_noise_alpha 0.1 \
        --TRAIN_STEPS 800
+```
