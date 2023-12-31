@@ -73,8 +73,6 @@ PLACE=50
 CP=560
 BASE_MODEL="kittn/mistral-7B-v0.1-hf"
 LORA_WEIGHTS="../mistral/PLACE$PLACE/checkpoint-$CP"
-
-# Run the Python script with parameters
 python prediction.py \
     --load_8bit False\
     --base_model "$BASE_MODEL" \
