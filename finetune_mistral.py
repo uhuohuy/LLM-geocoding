@@ -34,7 +34,7 @@ DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 DEVICE
 
 parser = argparse.ArgumentParser(description='manual to this script')
-parser.add_argument('--data_file', type=str, default="alpaca-chennai.json")
+parser.add_argument('--data_file', type=str, default="data/training_data.json.json")
 parser.add_argument('--BASE_MODEL', type=str, default="kittn/mistral-7B-v0.1-hf")
 parser.add_argument('--OUTPUT_DIR', type=str, default="PLACE6")
 parser.add_argument('--LEARNING_RATE', type=float, default=3e-4)
