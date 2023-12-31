@@ -75,7 +75,7 @@ BASE_MODEL="kittn/mistral-7B-v0.1-hf"
 LORA_WEIGHTS="../mistral/PLACE$PLACE/checkpoint-$CP"
 
 # Run the Python script with parameters
-python llama2_location.py \
+python prediction.py \
     --load_8bit False\
     --base_model "$BASE_MODEL" \
     --lora_weights "$LORA_WEIGHTS" \
