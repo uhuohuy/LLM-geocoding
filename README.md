@@ -13,7 +13,7 @@ This is the code for fine-tuning Mistral, llama2, Baichuan2, and Falcon for geoc
 OUT='PLACE'
 mkdir $OUT
 python finetune_llama.py \
-       --data_file "training_data.json" \
+       --data_file "data/training_data.json" \
        --R 16 \
        --batch 32 \
        --ALPHA 16 \
