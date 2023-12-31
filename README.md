@@ -26,6 +26,7 @@ python finetune_llama.py \
        --TRAIN_STEPS 500
 ```
 ### Baichuan2
+Download [Baichuan2](https://github.com/baichuan-inc/Baichuan2/tree/main) project and replace the fine-tune.py file with the provided fine-tune.py file in this project.
 ```shell
 
 OUT='PLACE8'
