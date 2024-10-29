@@ -6,8 +6,6 @@ This is the code for fine-tuning Mistral, llama2, Baichuan2, and Falcon for geoc
  <img src="figure/llm-workflow.png"  ></a>
 </p>
 
-## Data Preparation
-unzip the [test_data.zip](data/test_data.zip) file.
 ## Fine-tuning
 ### Mistral and Llama2
 ```shell
@@ -70,6 +68,8 @@ python finetune/lora.py --checkpoint_dir checkpoints/tiiuae/falcon-7b \
                         --precision bf16-true  \
 ```
 ## Generation or Prediction
+unzip the [test_data.zip](data/test_data.zip) file.
+
 ```shell
 PLACE=50
 CP=560
