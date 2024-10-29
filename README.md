@@ -9,7 +9,7 @@ This is the code for fine-tuning Mistral, llama2, Baichuan2, and Falcon for geoc
 ## Fine-tuning
 ### Mistral and Llama2
 ```shell
-OUT='PLACE'
+OUT='lora_weights_save_dir'
 mkdir $OUT
 python finetune_llm.py \
        --data_file "data/training_data.json" \
@@ -27,7 +27,7 @@ python finetune_llm.py \
 Download [Baichuan2](https://github.com/baichuan-inc/Baichuan2/tree/main) project and replace the fine-tune.py file with the provided fine-tune.py file in this project.
 ```shell
 
-OUT='PLACE8'
+OUT='lora_weights_save_dir'
 mkdir $OUT
 hostfile=""
 deepspeed --hostfile=$hostfile fine-tune.py  \
@@ -59,7 +59,7 @@ deepspeed --hostfile=$hostfile fine-tune.py  \
 ```
 ### Falcon
 ```shell
-Out='out/Place25'
+Out='lora_weights_save_dir'
 mkdir $Out
 python finetune/lora.py --checkpoint_dir checkpoints/tiiuae/falcon-7b \
                         --data_dir data/7  \
@@ -71,10 +71,9 @@ python finetune/lora.py --checkpoint_dir checkpoints/tiiuae/falcon-7b \
 unzip the [test_data.zip](data/test_data.zip) file.
 
 ```shell
-PLACE=50
-CP=560
+checkpoint=35
 BASE_MODEL="kittn/mistral-7B-v0.1-hf"
-LORA_WEIGHTS="../mistral/PLACE$PLACE/checkpoint-$CP"
+LORA_WEIGHTS="lora_weights_save_dir/checkpoint-$checkpoint"
 python prediction.py \
     --load_8bit False\
     --base_model "$BASE_MODEL" \
