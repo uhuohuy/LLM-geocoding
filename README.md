@@ -80,3 +80,17 @@ python prediction.py \
     --base_model "$BASE_MODEL" \
     --lora_weights "$LORA_WEIGHTS" \
 ```
+## Citation
+
+If you use the code or data, please cite the following publication:
+
+```bibtex
+@article{hu2024toponym,
+  title={Toponym resolution leveraging lightweight and open-source large language models and geo-knowledge},
+  author={Hu, Xuke and Kersten, Jens and Klan, Friederike and Farzana, Sheikh Mastura},
+  journal={International Journal of Geographical Information Science},
+  pages={1--28},
+  year={2024},
+  publisher={Taylor \& Francis}
+}
+```
