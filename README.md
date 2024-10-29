@@ -13,7 +13,7 @@ unzip the [test_data.zip](data/test_data.zip) file.
 ```shell
 OUT='PLACE'
 mkdir $OUT
-python finetune.py \
+python finetune_llm.py \
        --data_file "data/training_data.json" \
        --R 16 \
        --batch 32 \
