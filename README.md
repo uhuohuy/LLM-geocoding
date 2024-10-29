@@ -91,6 +91,6 @@ If you use the code or data, please cite the following publication:
   journal={International Journal of Geographical Information Science},
   pages={1--28},
   year={2024},
-  publisher={Taylor \& Francis}
+  publisher={Taylor & Francis}
 }
 ```
