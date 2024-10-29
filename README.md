@@ -1,5 +1,5 @@
 # LLM-geocoding
-This is the code for fine-tuning Mistral, llama2, Baichuan2, and Falcon for geocoding or toponym resolution tasks. These models are fine-tuned to accurately estimate toponyms' full addresses (e.g., city, state, country), subsequently determining their geo-coordinates via geocoders, as shown in the figure below.
+This is the code for fine-tuning Mistral, llama2, Baichuan2, and Falcon for geocoding or toponym resolution tasks. These models are fine-tuned to accurately estimate toponyms' unambiguous references or full addresses (e.g., city, state, country), subsequently determining their geo-coordinates via geocoders, as shown in the figure below.
 
 <p align="center">
 <a href="url">
