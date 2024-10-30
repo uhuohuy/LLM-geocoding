@@ -82,8 +82,9 @@ We have provided the fine-tuned models (LoRA weights) for your convenience. The 
 
 
 ## Generation or Prediction
-unzip the [test_data.zip](data/test_data.zip) file.
+unzip the [test_data.zip](data/test_data.zip) to the right place.
 
+For Mistral, llama2, and Baichuan2, execute the follow code:
 ```shell
 BASE_MODEL="kittn/mistral-7B-v0.1-hf"
 LORA_WEIGHTS="path_of_the_lora_weights" 
@@ -92,6 +93,16 @@ python prediction.py \
     --base_model "$BASE_MODEL" \
     --lora_weights "$LORA_WEIGHTS" \
 ```
+
+For Falcon, please use the  [lit-gpt](https://github.com/drisspg/lit-gpt) project to execute the following code. Please put the _falcon_prediction.py_ under the _generation_ folder of the lit-gpt project.
+
+```shell
+python generate/lora_location.py --checkpoint_dir checkpoints/tiiuae/falcon-7b \
+                        --lora_path "path_of_the_lora_weights" # e.g., iter-183552-ckpt.pth \
+                        --top_k 40 \
+                        --max_seq_length 2048 \
+```
+
 ## Citation
 
 If you use the code or data, please cite the following publication:
