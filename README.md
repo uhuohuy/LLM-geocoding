@@ -84,7 +84,7 @@ unzip the [test_data.zip](data/test_data.zip) file.
 
 ```shell
 BASE_MODEL="kittn/mistral-7B-v0.1-hf"
-LORA_WEIGHTS="path_of_the_lora_weights" #"xukehu/Mistral-7B-LoRA-Toponym-Resolution"
+LORA_WEIGHTS="path_of_the_lora_weights" 
 python prediction.py \
     --load_8bit False\
     --base_model "$BASE_MODEL" \
