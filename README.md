@@ -82,9 +82,9 @@ We have provided the fine-tuned models (LoRA weights) for your convenience. The 
 
 
 ## Generation or Prediction
-unzip the [test_data.zip](data/test_data.zip) to the right place.
+Unzip the [test_data.zip](data/test_data.zip) to the appropriate location. 
 
-For Mistral, llama2, and Baichuan2, execute the follow code:
+For Mistral, Llama2, and Baichuan2, execute the following code:
 ```shell
 BASE_MODEL="kittn/mistral-7B-v0.1-hf"
 LORA_WEIGHTS="path_of_the_lora_weights" 
@@ -94,7 +94,10 @@ python prediction.py \
     --lora_weights "$LORA_WEIGHTS" \
 ```
 
-For Falcon, please use the  [lit-gpt](https://github.com/drisspg/lit-gpt) project to execute the following code. Please put the _falcon_prediction.py_ under the _generation_ folder of the lit-gpt project.
+
+For Falcon, please use the [lit-gpt](https://github.com/drisspg/lit-gpt) to execute the following code. Ensure that the _falcon_prediction.py_ file is placed in the _generation_ folder of the lit-gpt project.
+
+
 
 ```shell
 python generate/lora_location.py \
@@ -103,6 +106,8 @@ python generate/lora_location.py \
        --top_k 40 \
        --max_seq_length 2048 \
 ```
+
+This step will estimate the unambiguous reference for toponyms in a text, such as 'Paris, Texas, US' for 'Paris.' By further querying geocodes using services like [Nominatim](https://nominatim.org/), [GeoNames](https://www.geonames.org/), [ArcGIS API](https://geocoder.readthedocs.io/providers/ArcGIS.html), or a combination of these geocoders, you can determine the geo-coordinates and other properties, such as population and type of the toponym.
 
 ## Citation
 
