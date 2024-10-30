@@ -76,8 +76,8 @@ We have provided the fine-tuned models (LoRA weights) for your convenience. The 
 - **[Mistral-7B](https://huggingface.co/xukehu/Mistral-7B-LoRA-Toponym-Resolution)**
 - **[Llama2-7B](https://huggingface.co/xukehu/Llama2-7B-LoRA-Toponym-Resolution)**
 - **[Llama2-13B](https://huggingface.co/xukehu/Llama2-13B-LoRA-Toponym-Resolution)**
-- **[Baichun2-7B](https://huggingface.co/xukehu/Mistral-7B-LoRA-Toponym-Resolution)**
-- **[Falcon-7B](https://huggingface.co/xukehu/Mistral-7B-LoRA-Toponym-Resolution)**
+- **[Baichun2-7B](https://huggingface.co/xukehu/Baichuan2-7B-LoRA-Toponym-Resolution)**
+- **[Falcon-7B](https://huggingface.co/xukehu/Falcon-7B-LoRA-Toponym-Resolution)**
 
 
 ## Generation or Prediction
