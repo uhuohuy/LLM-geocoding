@@ -97,10 +97,11 @@ python prediction.py \
 For Falcon, please use the  [lit-gpt](https://github.com/drisspg/lit-gpt) project to execute the following code. Please put the _falcon_prediction.py_ under the _generation_ folder of the lit-gpt project.
 
 ```shell
-python generate/lora_location.py --checkpoint_dir checkpoints/tiiuae/falcon-7b \
-                        --lora_path "path_of_the_lora_weights" # e.g., iter-183552-ckpt.pth \
-                        --top_k 40 \
-                        --max_seq_length 2048 \
+python generate/lora_location.py \
+       --checkpoint_dir checkpoints/tiiuae/falcon-7b \
+       --lora_path "path_of_the_lora_weights" # e.g., iter-183552-ckpt.pth \
+       --top_k 40 \
+       --max_seq_length 2048 \
 ```
 
 ## Citation
