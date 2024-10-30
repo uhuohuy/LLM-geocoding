@@ -6,6 +6,16 @@ This is the code for fine-tuning Mistral, llama2, Baichuan2, and Falcon for geoc
  <img src="figure/llm-workflow.png"  ></a>
 </p>
 
+
+## Install
+
+   ```shell
+   conda create --name myenv python=3.10
+   conda activate myenv
+   pip install -r requirements.txt
+```
+
+
 ## Fine-tuning
 ### Mistral and Llama2
 ```shell
@@ -24,7 +34,8 @@ python finetune_llm.py \
        --TRAIN_STEPS 500
 ```
 ### Baichuan2
-Use the  [Baichuan2](https://github.com/baichuan-inc/Baichuan2/tree/main) project to execute the following code. Please replace the fine-tune.py under the [fine-tune folder](https://github.com/baichuan-inc/Baichuan2/tree/main/fine-tune) file with the provided fine-tune.py file in this project.
+Use the [Baichuan2](https://github.com/baichuan-inc/Baichuan2/tree/main) project to execute the following code. Replace the _fine-tune.py_ file in the [fine-tune folder](https://github.com/baichuan-inc/Baichuan2/tree/main/fine-tune) with the provided _fine-tune.py_ file from this project. Make sure to install the required dependencies for this project.
+
 ```shell
 
 OUT='lora_weights_save_dir'
@@ -58,7 +69,7 @@ deepspeed --hostfile=$hostfile fine-tune.py  \
     --use_lora True \
 ```
 ### Falcon
-Use the [lit-gpt](https://github.com/drisspg/lit-gpt) project to execute the following code:
+Use the [lit-gpt](https://github.com/drisspg/lit-gpt) project to execute the following code. Make sure to install the required dependencies for this project.
 
 ```shell
 Out='lora_weights_save_dir'
