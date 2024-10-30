@@ -24,7 +24,7 @@ python finetune_llm.py \
        --TRAIN_STEPS 500
 ```
 ### Baichuan2
-Download [Baichuan2](https://github.com/baichuan-inc/Baichuan2/tree/main) project and replace the fine-tune.py under the [fine-tune folder](https://github.com/baichuan-inc/Baichuan2/tree/main/fine-tune) file with the provided fine-tune.py file in this project.
+Use the  [Baichuan2](https://github.com/baichuan-inc/Baichuan2/tree/main) project to execute the following code. Please replace the fine-tune.py under the [fine-tune folder](https://github.com/baichuan-inc/Baichuan2/tree/main/fine-tune) file with the provided fine-tune.py file in this project.
 ```shell
 
 OUT='lora_weights_save_dir'
@@ -58,6 +58,8 @@ deepspeed --hostfile=$hostfile fine-tune.py  \
     --use_lora True \
 ```
 ### Falcon
+Use the [lit-gpt](https://github.com/drisspg/lit-gpt) project to execute the following code:
+
 ```shell
 Out='lora_weights_save_dir'
 mkdir $Out
@@ -70,7 +72,6 @@ python finetune/lora.py --checkpoint_dir checkpoints/tiiuae/falcon-7b \
 
 
 ## Fine-Tuned Models
-
 We have provided the fine-tuned models (LoRA weights) for your convenience. The available models are:
 
 - **[Mistral-7B](https://huggingface.co/xukehu/Mistral-7B-LoRA-Toponym-Resolution)**
