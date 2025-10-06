@@ -55,19 +55,85 @@ def find_centered_substring(text, max_chars=1000):
         return centered_substring
 
     return ""
+    
+def clean_location_text(text: str) -> str:
+    """
+    Extract a clean geographic name from noisy text.
+    Handles patterns like <START>, <END>, /******/, <s>, #, etc.
+    """
+    # 1️⃣ Split by newline and take the first non-empty part
+    parts = [p.strip() for p in text.split('\n') if p.strip()]
+    if not parts:
+        return ""
+    first_part = parts[0]
 
-def insert_multiple_strings(original_string, strings_to_insert, insertion_indices):
-    result = []
-    previous_index = 0
+    # 2️⃣ Remove <START> and <END> tags
+    cleaned = re.sub(r"<START>|<END>", "", first_part)
+
+    # 3️⃣ Remove common filler tokens: /******/, <s>, ###, etc.
+    #    ⚠️ Don't remove letters like 's'!
+    cleaned = re.sub(r"/\*+/", " ", cleaned)      # remove /***/
+    cleaned = re.sub(r"<s>", " ", cleaned)        # remove <s>
+    cleaned = re.sub(r"[#*]+", " ", cleaned)      # remove #### or ****
+
+    # 4️⃣ Clean up extra spaces and punctuation
+    cleaned = re.sub(r"\s+", " ", cleaned).strip(" ,.;:-_").strip()
+
+    return cleaned
+
+def remove_consecutive_duplicates(text: str) -> str:
+    """
+    Remove only consecutive duplicate items from a comma-separated string.
+    Example:
+        'japan, japan, japan, asia' -> 'japan, asia'
+        'paris, france, paris' -> 'paris, france, paris'
+    """
+    # Split and clean items
+    items = [x.strip() for x in text.split(',') if x.strip()]
     
-    for index, insert_string in zip(insertion_indices, strings_to_insert):
-        result.append(original_string[previous_index:index])
-        result.append(insert_string)
-        previous_index = index
+    if not items:
+        return ""
+
+    # Keep first item, skip consecutive duplicates (case-insensitive)
+    result = [items[0]]
+    for item in items[1:]:
+        if item.lower() != result[-1].lower():
+            result.append(item)
     
-    result.append(original_string[previous_index:])
+    return ', '.join(result)
+
+def insert_tags(text, word, start_index, end_index, tolerance=15):
+    """
+    Inserts '<START>' before and '<END>' after the specified word in the text, 
+    considering possible offsets in the provided start_index and end_index.
     
-    return ''.join(result)
+    Parameters:
+    - text (str): The input string.
+    - word (str): The word to surround with tags.
+    - start_index (int): The provided starting index of the word.
+    - end_index (int): The provided ending index of the word.
+    - tolerance (int): The maximum offset allowed for start_index and end_index.
+    
+    Returns:
+    - str: The modified string with tags inserted.
+    """
+    
+    # Define the possible range of indices to search for the word
+    search_start = max(0, start_index - tolerance)
+    search_end = min(len(text), end_index + tolerance)
+    
+    # Search for the word within the specified range
+    index = text.find(word, search_start, search_end)
+    
+    # If the word is found within the range, insert the tags
+    if index != -1:
+        start_index = index
+        end_index = index + len(word)
+        tagged_text = text[:start_index] + '<START>' + word + '<END>' + text[end_index:]
+        return tagged_text
+    else:
+        # If the word is not found within the range, return the original text
+        return text
 
 def remove_punctuation(input_string):
     # Create a translation table to remove punctuation
@@ -241,7 +307,7 @@ def main(
     
     data_list = ['19th','wotr','trnews','geocorpora','gwn','LDC','wiktor']       # ,'geovirus','TUD','neel','semeval'
     for test_data in data_list: 
-        target_file = 'data/'+'llama2_'+output_file+'_'+test_data+".json"
+        target_file = 'data/'+output_file+'_'+test_data+".json"
         total_return_results = {}
         io =  open('data/'+test_data+'.json',"r")
         true_dict = json.load(io)
@@ -280,12 +346,14 @@ def main(
                             break
                 if bool_exist:
                     continue
-                text = insert_multiple_strings(total_line, ['<START>','<END>'],[int(place['start']), int(place['end'])])
+                text = insert_tags(total_line,place['LOC'],int(place['start']), int(place['end']))
                 text = find_centered_substring(text, max_char)
-                new_INSTRUCT = INSTRUCT.replace('the place name', place['LOC'] )
+                new_INSTRUCT = INSTRUCT.replace('the place name', place['LOC'])
                 evaluation_generator = evaluate(new_INSTRUCT, text)
                 place_count +=1
                 address = str(*evaluation_generator).replace("</s>", "")
+                address = clean_location_text(address)
+                address = remove_consecutive_duplicates(address)
                 if not output_coor:
                     return_objects.append({'start':place['start'],'end':place['end'],'LOC':place['LOC'],'address':address})
                 else:
@@ -305,10 +373,10 @@ def main(
                 temp = total_return_results[ID]
                 temp.extend(return_objects)
                 total_return_results[ID] = temp
-            f = open('data/'+'llama2_'+output_file+'_'+test_data+".json", "w")
+            f = open(target_file, "w")
             json.dump(total_return_results, f)
             f.close()
-        f = open('data/'+'llama2_'+output_file+'_'+test_data+".json", "w")
+        f = open(target_file, "w")
         json.dump(total_return_results, f)
         f.close()
     end_time = time.time()
